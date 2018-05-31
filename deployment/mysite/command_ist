@@ -1,0 +1,1000 @@
+  267  lsof
+  268  netstat |grep 8080
+  269  netstat
+  270  curl http://127.0.0.1:8080
+  271  telnet 127.0.0.1 8080
+  272  sudo yum install telnet
+  273  telnet 127.0.0.1 8080
+  274  ip addr show
+  275  docker network inspect bridge
+  276  docker run -itd --name=container1 busybox
+  277  docker run -itd --name=container2 busybox
+  278  docker network inspect bridge
+  279  docker attach container1
+  280  docker ps
+  281  docker image
+  282  docker images
+  283  docker attach container1
+  284  docker attach container2
+  285  docker ps
+  286  docker network ls
+  287  docker inspect 
+  288  docker inspect bridge
+  289  history |grep mysql
+  290  url='http://build2.inse.lucent.com/bugzilla/buglist.cgi?bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&bug_status=RESOLVED&bug_status=VERIFIED&bug_status=CLOSED&email1=&emailtype1=substring&emailassigned_to1=1&email2=hector.zhang%40nokia-sbell.com&emailtype2=substring&emailreporter2=1&changedin=&chfieldfrom=&chfieldto=Now&chfieldvalue=&telica_subversion=&telica_subversion_type=substring&short_desc=&short_desc_type=substring&long_desc=&long_desc_type=substring&bug_file_loc=&bug_file_loc_type=substring&sqa_identity=&sqa_identity_type=substring&branch=NONE&checkedInAfter=&checkedInBefore=&cmdtype=doit&newqueryname=&order=%22Importance%22&form_name=query'
+  291  echo $url
+  292  curl $url
+  293  url2='http://build2.inse.lucent.com/bugzilla/show_bug.cgi?id=95415'
+  294  curl $url2
+  295  curl $url2 > temp
+  296  vi temp
+  297  url2='http://build2.inse.lucent.com/bugzilla/show_bug.cgi?id=97000'
+  298  curl $url2 
+  299  vi temp
+  300  grep -inR 'Comments From' temp
+  301  curl $url2 |grep -inR 'Comments From'
+  302  ls -la
+  303  ls
+  304  cd ../
+  305  ls
+  306  cd ansible/
+  307  ls
+  308  cd hectorz/
+  309  ls
+  310  vi temp
+  311  sed -e 's/.*Additional Comments: 
+  312  sed -e 's/.*Additional Comments/\(1\)/' temp
+  313  sed -e 's/\(.*\)Additional Comments/1/' temp
+  314  sed -e 's/\(.*\)Additional Comments/1/' temp 
+  315  vi temp
+  316  sed -e 's/\(.*\)Additional Comments/\1/' temp 
+  317  sed 's/\(.*\)Additional Comments/\1/' temp 
+  318  sed 's/\(.*\)Additional Comments/\1/g' temp 
+  319  sed 's/Additional Comments/1/g' temp 
+  320  vi temp
+  321  grep -inR short_desc ./temp
+  322  docker images 
+  323  docker run -it centos
+  324  docker login
+  325  curl www.baidu.com
+  326   systemctl stop firewalld.service
+  327  su root
+  328  curl www.baidu.com
+  329  sudo  systemctl stop firewalld.service
+  330  curl www.baidu.com
+  331  ping www.baidu.com
+  332  curl www.baidu.com
+  333  service iptables stop
+  334  su root
+  335  ls
+  336  url='http://build2.inse.lucent.com/bugzilla/buglist.cgi?bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&bug_status=RESOLVED&bug_status=VERIFIED&bug_status=CLOSED&email1=&emailtype1=substring&emailassigned_to1=1&email2=&emailtype2=substring&emailreporter2=1&changedin=&chfield=%5BBug+creation%5D&chfield=SQAReview&chfield=area&chfield=assigned_to&chfield=atca_version&chfield=backport&chfield=bug_file_loc&chfield=bug_severity&chfield=bug_status&chfield=category&chfield=ccb&chfield=compMajID&chfield=compMinID&chfield=component&chfield=fault_type&chfield=featureID&chfield=gos_version&chfield=groupset&chfield=hotupgrade&chfield=op_sys&chfield=otherissues&chfield=outage&chfield=priority&chfield=product&chfield=qa_contact&chfield=rca_tea&chfield=release_note&chfield=rep_platform&chfield=reporter&chfield=resolution&chfield=sanitized_by&chfield=sanitized_ts&chfield=sanity_desc&chfield=short_desc&chfield=sqa_identity&chfield=status_whiteboard&chfield=target_milestone&chfield=telica_version&chfieldfrom=2017-1-1&chfieldto=Now&chfieldvalue=&telica_subversion=&telica_subversion_type=substring&short_desc=&short_desc_type=substring&long_desc=&long_desc_type=substring&bug_file_loc=&bug_file_loc_type=substring&sqa_identity=&sqa_identity_type=substring&branch=NONE&checkedInAfter=&checkedInBefore=&cmdtype=doit&newqueryname=&order=%22Importance%22&form_name=query'
+  337  curl $url >temp
+  338  vi temp
+  339  mv temp query.html
+  340  python 
+  341  docker
+  342  docker login
+  343  su root
+  344  ls
+  345  cd dA/
+  346  ls
+  347  vi tr.dat 
+  348  ls
+  349  vi tr.dat 
+  350  cd /var
+  351  ls
+  352  cd log
+  353  tail -f firewalld 
+  354  iptables -L
+  355  docker login
+  356  cd ~
+  357  ls
+  358  docker run --it centos
+  359  docker run -it centos
+  360  docker ps
+  361  ls
+  362  cd ../
+  363  cd ~
+  364  ls
+  365  mkdir dA
+  366  cd dA/
+  367  mv ../query.html ./
+  368  ls
+  369  vi query.html 
+  370  sed 's/<TABLE\(.*\)/\1/g' query.html 
+  371  sed 's/.*<TABLE//g' query.html 
+  372  sed 's/^.*\/html//g' query.html 
+  373  grep -inR TR query.html 
+  374  vi query.html 
+  375  grep "^<TR" query.html |wc -l
+  376  grep "^<TR" query.html 
+  377  grep "^<TR" query.html > tr.dat
+  378  vi tr.dat 
+  379  sed 's/<.nobr>/\t/g' tr.dat 
+  380  sed 's/<?nobr>/\t/g' tr.dat 
+  381  sed 's/<.?nobr>/\t/g' tr.dat 
+  382  sed 's/<[/]{0-1}nobr>/\t/g' tr.dat 
+  383  sed 's/<\/{0-1}nobr>/\t/g' tr.dat 
+  384  sed 's/<nobr>/\t/g' tr.dat 
+  385  sed 's/nobr>/\t/g' tr.dat 
+  386  sed 's/<\/?nobr>/\t/g' tr.dat 
+  387  sed 's#</?nobr>#\t#g' tr.dat 
+  388  sed 's#</\?nobr>#\t#g' tr.dat 
+  389  sed -e 's#</\?nobr>#\t#g' -e 's#<td >//g' tr.dat 
+  390  sed -e 's#</\?nobr>#\t#g' -e 's/<td >//g' tr.dat 
+  391  vi tr.dat 
+  392  sed -e 's#</\?nobr>#\t#g' -e 's/<td >//g' -e 's/\(^.\)">\([0-9]*\)<\/A>/\2/g  tr.dat 
+  393  sed -e 's#</\?nobr>#\t#g' -e 's/<td >//g' -e 's/\(^.\)">\([0-9]*\)<\/A>/\2/g'  tr.dat 
+  394  sed -e 's#</\?nobr>#\t#g' -e 's/<td >//g' -e 's#\(^.\)">\([0-9]*\)<A>#\2#g'  tr.dat 
+  395  sed -e 's#</\?nobr>#\t#g' -e 's/<td >//g' -e 's#</A>##g'  tr.dat 
+  396  sed -e 's#</\?nobr>#\t#g' -e 's/<td >//g' -e 's#^.*</A>##g'  tr.dat 
+  397  sed -e 's#</\?nobr>#\t#g' -e 's/<td >//g' -e 's#\(^.*\)">\([0-9]*\)</A>#\2#g'  tr.dat 
+  398  sed -e 's#</\?nobr>#\t#g' -e 's#<td >##g' -e 's#\(^.*\)">\([0-9]*\)</A>#\2#g'  tr.dat 
+  399  grep "^<TR" query.html |sed -e 's#</\?nobr>#\t#g' -e 's/<td >//g' -e 's/\(^.\)">\([0-9]*\)<\/A>/\2/g'|wc -l
+  400  grep "^<TR" query.html
+  401  grep "^<TR VALIGN=TOP" query.html |sed -e 's#</\?nobr>#\t#g' -e 's/<td >//g' -e 's/\(^.\)">\([0-9]*\)<\/A>/\2/g'|wc -l
+  402  echo $url
+  403  url='http://build2.inse.lucent.com/bugzilla/buglist.cgi?bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&bug_status=RESOLVED&bug_status=VERIFIED&bug_status=CLOSED&email1=&emailtype1=substring&emailassigned_to1=1&email2=&emailtype2=substring&emailreporter2=1&changedin=&chfield=%5BBug+creation%5D&chfield=SQAReview&chfield=area&chfield=assigned_to&chfield=atca_version&chfield=backport&chfield=bug_file_loc&chfield=bug_severity&chfield=bug_status&chfield=category&chfield=ccb&chfield=compMajID&chfield=compMinID&chfield=component&chfield=fault_type&chfield=featureID&chfield=gos_version&chfield=groupset&chfield=hotupgrade&chfield=op_sys&chfield=otherissues&chfield=outage&chfield=priority&chfield=product&chfield=qa_contact&chfield=rca_tea&chfield=release_note&chfield=rep_platform&chfield=reporter&chfield=resolution&chfield=sanitized_by&chfield=sanitized_ts&chfield=sanity_desc&chfield=short_desc&chfield=sqa_identity&chfield=status_whiteboard&chfield=target_milestone&chfield=telica_version&chfieldfrom=2017-1-1&chfieldto=Now&chfieldvalue=&telica_subversion=&telica_subversion_type=substring&short_desc=&short_desc_type=substring&long_desc=&long_desc_type=substring&bug_file_loc=&bug_file_loc_type=substring&sqa_identity=&sqa_identity_type=substring&branch=NONE&checkedInAfter=&checkedInBefore=&cmdtype=doit&newqueryname=&order=%22Importance%22&form_name=query'
+  404  curl $url |grep "^<TR VALIGN=TOP" query.html |sed -e 's#</\?nobr>#\t#g' -e 's/<td >//g' -e 's/\(^.\)">\([0-9]*\)<\/A>/\2/g'|wc -l
+  405  grep "^<TR VALIGN=TOP" query.html |sed -e 's#</\?nobr>#\t#g' -e 's/<td >//g' -e 's/\(^.\)">\([0-9]*\)<\/A>/\2/g'> col.dat
+  406  ls
+  407  vi col.dat 
+  408  sed -e 's#</\?nobr>#\t#g' -e 's#<td >##g' -e 's#\(^.*\)">\([0-9]*\)</A>#\2#g'  tr.dat 
+  409  grep "^<TR VALIGN=TOP" query.html |sed -e 's#</\?nobr>#\t#g' -e 's#<td >##g' -e 's#\(^.*\)">\([0-9]*\)</A>#\2#g'
+  410  grep "^<TR VALIGN=TOP" query.html |sed -e 's#</\?nobr>#\t#g' -e 's#<td >##g' -e 's#\(^.*\)">\([0-9]*\)</A>#\2#g' >col.dat 
+  411  vi col.dat 
+  412  vi query.html 
+  413  ls
+  414  mv Bug\ List.html buglist.html
+  415  ls
+  416  grep "^<TR VALIGN=TOP" buglist.html |sed -e 's#</\?nobr>#\t#g' -e 's#<td >##g' -e 's#\(^.*\)">\([0-9]*\)</A>#\2#g' >col.dat 
+  417  vi col.dat 
+  418  grep "^<TR VALIGN=TOP" buglist.html 
+  419  vi buglist.html 
+  420  sed -e 's#<tr valign="TOP" align="LEFT">#\n<tr valign="TOP" align="LEFT">/g' buglist.html >query.html 
+  421  sed -e 's#<tr valign="TOP" align="LEFT">#\n<tr valign="TOP" align="LEFT">#g' buglist.html >query.html 
+  422  vi query.html 
+  423  sed -e 's#<tr valign="TOP" align="LEFT">#\n<tr valign="TOP" align="LEFT">#g' buglist.html >query.html |grep '^<tr valign="TOP" align="LEFT">' 
+  424  vi query.html 
+  425  sed -e 's#<tr valign="TOP" align="LEFT">#\n<tr valign="TOP" align="LEFT">#g' buglist.html |grep '^<tr valign="TOP" align="LEFT">' |wc -l
+  426  sed -e 's#<tr valign="TOP" align="LEFT">#\n<tr valign="TOP" align="LEFT">#g' buglist.html |grep '^<tr valign="TOP" align="LEFT">' |sed -e 's#</\?nobr>#\t#g' -e 's#<td >##g' -e 's#\(^.*\)">\([0-9]*\)</a>#\2#g' >col.dat
+  427  vi col.dat 
+  428  ls
+  429  sed -e 's#<tr valign="TOP" align="LEFT">#\n<tr valign="TOP" align="LEFT">#g' buglist.html |grep '^<tr valign="TOP" align="LEFT">' >tr.dat 
+  430  vi tr.dat 
+  431  sed -e 's#<tr valign="TOP" align="LEFT">#\n<tr valign="TOP" align="LEFT">#g' buglist.html |grep '^<tr valign="TOP" align="LEFT">' |sed -e 's#</\?nobr>#\t#g' -e 's#</\?td>##g' -e 's#\(^.*\)">\([0-9]*\)</a>#\2#g' >col.dat
+  432  vi col.dat 
+  433  vi tr.dat 
+  434  sed -e 's#<tr valign="TOP" align="LEFT">#\n<tr valign="TOP" align="LEFT">#g' buglist.html |grep '^<tr valign="TOP" align="LEFT">' |sed -e 's#</\?nobr>#\t#g' -e 's#</\?td>##g' -e 's#\(^.*?id=\)"\([0-9]*\)\(">[0-9]\{5\}\)</a>#\2#g' >col.dat
+  435  vi col.dat 
+  436  sed -e 's#<tr valign="TOP" align="LEFT">#\n<tr valign="TOP" align="LEFT">#g' buglist.html |grep '^<tr valign="TOP" align="LEFT">' |sed -e 's#</\?nobr>#\t#g' -e 's#</\?td>##g' -e 's#\(^.*id=\)"\([0-9]*\)\(">[0-9]\{5\}\)</a>#\2#g' 
+  437  sed -e 's#<tr valign="TOP" align="LEFT">#\n<tr valign="TOP" align="LEFT">#g' buglist.html |grep '^<tr valign="TOP" align="LEFT">' |sed -e 's#</\?nobr>#\t#g' -e 's#</\?td>##g' -e 's#\(^.*id=\)\([0-9]*\)\(">[0-9]\{5\}\)</a>#\2#g' 
+  438  sed -e 's#<tr valign="TOP" align="LEFT">#\n<tr valign="TOP" align="LEFT">#g' buglist.html |grep '^<tr valign="TOP" align="LEFT">' |sed -e 's#</\?nobr>#\t#g' -e 's#</\?td>##g' -e 's#\(^.*id=\)\([0-9]*\)\(">[0-9]\{5\}\)</a>#\2#g' >col.dat 
+  439  vi col.dat 
+  440  awk -F\t "{print $27}" col.dat 
+  441  awk -F\t "{print ${27};}" col.dat 
+  442  awk -F\t "{print ${20};}" col.dat 
+  443  awk -F\t "{print $1;}" col.dat 
+  444  awk -F\t "{print $1}" col.dat 
+  445  awk -F\t '{print $1}' col.dat 
+  446  awk -F'\t' '{print $1}' col.dat 
+  447  awk -F'\t' '{print $1}' col.dat |wc -l
+  448  awk -F'\t' '{print ${20}}' col.dat 
+  449  awk -F'\t' '{print ${20};}' col.dat 
+  450  awk -F'\t' '{print $20;}' col.dat 
+  451  awk -F'\t' '{print $27;}' col.dat 
+  452  awk -F'\t' '{print $26;}' col.dat 
+  453  vi col.dat 
+  454  ls
+  455  vi query.html 
+  456  vi col.dat 
+  457  awk -F'\t' '{print $46;}' col.dat 
+  458  awk -F'\t' '{print $47;}' col.dat 
+  459  awk -F'\t' '{print $1,$47;}' col.dat 
+  460  vi tr.dat 
+  461  sed -e 's#<tr valign="TOP" align="LEFT">#\n<tr valign="TOP" align="LEFT">#g' buglist.html |grep '^<tr valign="TOP" align="LEFT">' |sed -e 's#</\?nobr>#^#g' -e 's#</\?td>##g' -e 's#\(^.*id=\)\([0-9]*\)\(">[0-9]\{5\}\)</a>#\2#g' >col.dat 
+  462  vi col.dat 
+  463  sed -e 's#<tr valign="TOP" align="LEFT">#\n<tr valign="TOP" align="LEFT">#g' -e 's#</\?nobr>##g' buglist.html |grep '^<tr valign="TOP" align="LEFT">' |sed  -e 's#</\?td>#^#g' -e 's#\(^.*id=\)\([0-9]*\)\(">[0-9]\{5\}\)</a>#\2#g' >col.dat 
+  464  vi col.dat 
+  465  sed -e 's#<tr valign="TOP" align="LEFT">#\n<tr valign="TOP" align="LEFT">#g' -e 's#</\?nobr>##g' buglist.html |grep '^<tr valign="TOP" align="LEFT">' |sed  -e 's#</td><td>#^#g' -e 's#\(^.*id=\)\([0-9]*\)\(">[0-9]\{5\}\)</a>#\2#g' >col.dat 
+  466  vi col.dat 
+  467  head -1 col.dat 
+  468  head -1 col.dat |awk -F'^' "{ print $NF}"
+  469  head -1 col.dat |awk -F'^' '{ print $NF}'
+  470  head -1 col.dat |awk -F'^' '{ print "filename:" FILENAME ",linenumber:" NR ",columns:" NF ",linecontent:"$0 }'
+  471  head -1 col.dat |awk -F'^' '{ print "filename:" FILENAME ",linenumber:" NR ",columns:" NF "; for (i = 0;i < NF;i++) print $i }'
+  472  head -1 col.dat |awk -F'^' '{  for (i = 0;i < NF;i++) print $i }'
+  473  head -1 col.dat |awk -F'^' '{  for (i = 0;i < NF;i++) print $(i+1) }'
+  474  head -1 col.dat |awk -F'^' '{  for (i = 0;i < NF;i++) print i+1,$(i+1) }'
+  475  ls
+  476  vi col.dat 
+  477  python
+  478  ls
+  479  vi createCsv.py
+  480  python createCsv.py 
+  481  vi createCsv.py
+  482  python createCsv.py 
+  483  vi col.dat 
+  484  head -10 col.dat |awk -F'^' '{ print "INSERT INTO #TABLE# VALUES ("; for (i = 0;i < NF;i++) print $(i+1); print "")" }'
+  485  head -10 col.dat |awk -F'^' '{ print "INSERT INTO #TABLE# VALUES ("; for (i = 0;i < NF;i++) print $(i+1); print ")" }'
+  486  head -10 col.dat |awk -F'^' '{ print "INSERT INTO #TABLE# VALUES ("; for (i = 0;i < NF;i++) print $(i+1),","; print ")" }'
+  487  head -10 col.dat |awk -F'^' '{ print "INSERT INTO #TABLE# VALUES ("; for (i = 0;i < NF;i++) if(i != NF-2)print $(i+1),","; print ")" }'
+  488  head -10 col.dat |awk -F'^' '{ print "INSERT INTO #TABLE# VALUES ("; for (i = 0;i < NF;i++) if(i != NF-2)print gsub(/ /,"",$(i+1)),","; print ")" }'
+  489  head -10 col.dat |awk -F'^' '{ print "INSERT INTO #TABLE# VALUES ("; for (i = 0;i < NF;i++) if(i != NF-2)print gsub(^ *| *$, "",$(i+1)),","; print ")" }'
+  490  head -10 col.dat |awk -F'^' '{ print "INSERT INTO #TABLE# VALUES ("; for (i = 0;i < NF;i++) if(i != NF-2) gsub(^ *| *$, "",$(i+1)); print $(i+1),","; print ")" }'
+  491  head -10 col.dat |awk -F'^' '{ print "INSERT INTO #TABLE# VALUES ("; for (i = 0;i < NF;i++) if(i != NF-2) gsub([^ *| *$], "",$(i+1)); print $(i+1),","; print ")" }'
+  492  head -10 col.dat |awk -F'^' '{ print "INSERT INTO #TABLE# VALUES ("; for (i = 0;i < NF;i++) if(i != NF-2) gsub(/^ *| *$/, "",$(i+1)); print $(i+1),","; print ")" }'
+  493  echo "  abcd   eftg  "|awk 'gsub(/^ *| *$/,"")'
+  494  head -10 col.dat |awk -F'^' '{ print "INSERT INTO #TABLE# VALUES ("; for (i = 0;i < NF;i++){ gsub(/^ *| *$/, "", $(i+1) ); print $(i+1),",";} print ")" }'
+  495  head -10 col.dat |awk -F'^' '{ print "INSERT INTO #TABLE# VALUES ("; for (i = 0;i < NF;i++){ gsub(/^ *| *$/, "", $(i+1) ); print "'",$(i+1),"'",",";} print ")" }'
+  496  head -10 col.dat |awk -F'^' '{ print "INSERT INTO #TABLE# VALUES ("; for (i = 0;i < NF;i++){ gsub(/^ *| *$/, "", $(i+1) ); print "'"+$(i+1)+"'"+",";} print ")" }'
+  497  head -10 col.dat |awk -F'^' '{ print "INSERT INTO #TABLE# VALUES ("; for (i = 0;i < NF;i++){ gsub(/^ *| *$/, "", $(i+1) ); print "'",$(i+1),"'",",";} print ")" }'
+  498  head -1 col.dat |awk -F'^' '{ print "INSERT INTO #TABLE# VALUES ("; for (i = 0;i < NF;i++){ gsub(/^ *| *$/, "", $(i+1) ); print "'",$(i+1),"'",",";} print ")" }'
+  499  head -1 col.dat |awk -F'^' '{ print "INSERT INTO #TABLE# VALUES ("; for (i = 0;i < NF;i++){ gsub(/^ *| *$/, "", $(i+1) ); print """,$(i+1),""",",";} print ")" }'
+  500  head -1 col.dat |awk -F'^' '{ print "INSERT INTO #TABLE# VALUES ("; for (i = 0;i < NF;i++){ gsub(/^ *| *$/, "", $(i+1) ); print "",$(i+1),"",",";} print ")" }'
+  501  head -1 col.dat |awk -F'^' '{ print "INSERT INTO #TABLE# VALUES ("; for (i = 0;i < NF;i++){ gsub(/^ *| *$/, "", $(i+1) ); print $(i+1),",";} print ")" }'
+  502  head -1 col.dat |awk -F'^' '{ print "INSERT INTO #TABLE# VALUES ("; for (i = 0;i < NF;i++){ gsub(/^ *| *$/, "", $(i+1) ); print $(i+1);} print ")" }'
+  503  head -1 col.dat |awk -F'^' '{ print "INSERT INTO #TABLE# VALUES ("; for (i = 0;i < NF;i++){ gsub(/^ *| *$/, "", $(i+1) ); printf("%s",$(i+1));} print ")" }'
+  504  head -1 col.dat |awk -F'^' '{ print "INSERT INTO #TABLE# VALUES ("; for (i = 0;i < NF;i++){ gsub(/^ *| *$/, "", $(i+1) ); printf("%s,\n",$(i+1));} print ")" }'
+  505  head -1 col.dat |awk -F'^' '{ print "INSERT INTO #TABLE# VALUES ("; for (i = 0;i < NF;i++){ gsub(/^ *| *$/, "", $(i+1) ); printf("%s_,\n",$(i+1));} print ")" }'
+  506  head -1 col.dat |awk -F'^' '{ print "INSERT INTO #TABLE# VALUES ("; for (i = 0;i < NF;i++){ gsub(/^ *| *$/, "", $(i+1) ); printf("%s_,",$(i+1));} print ")" }'
+  507  head -1 col.dat |awk -F'^' '{ print "INSERT INTO #TABLE# VALUES ("; for (i = 0;i < NF;i++){ gsub(/^ *| *$/, "", $(i+1) ); printf("\"%s\"_,",$(i+1));} print ")" }'
+  508  head -1 col.dat |awk -F'^' '{ print "INSERT INTO #TABLE# VALUES ("; for (i = 0;i < NF;i++){ gsub(/^ *| *$/, "", $(i+1) ); printf("\'%s\'_,",$(i+1));} print ")" }'
+  509  head -1 col.dat |awk -F'^' '{ print "INSERT INTO #TABLE# VALUES ("; for (i = 0;i < NF;i++){ gsub(/^ *| *$/, "", $(i+1) ); printf("\"%s\"_,",$(i+1));} print ")" }'
+  510  head -1 col.dat |awk -F'^' '{ print "INSERT INTO #TABLE# VALUES ("; for (i = 0;i < NF;i++){ gsub(/^ *| *$/, "", $(i+1) ); printf("\"%s\",",$(i+1));} print ")" }'
+  511  cat col.dat |awk -F'^' '{ print "INSERT INTO #TABLE# VALUES ("; for (i = 0;i < NF;i++){ gsub(/^ *| *$/, "", $(i+1) ); printf("\"%s\",",$(i+1));} print ")" }' > insert.sql
+  512  vi insert.sql 
+  513  cat col.dat |awk -F'^' '{ printf( "INSERT INTO #TABLE# VALUES (\t"); for (i = 0;i < NF;i++){ gsub(/^ *| *$/, "", $(i+1) ); printf("\"%s\",",$(i+1));} print ")" }' > insert.sql
+  514  vi insert.sql 
+  515  cd dA/
+  516  ls
+  517  tail -1 tr.dat 
+  518  tail -1 col.dat 
+  519  history |less
+  520  cat col.dat |awk -F'^' '{ printf( "INSERT INTO #TABLE# VALUES (\t"); for (i = 0;i < NF;i++){ gsub(/^ *| *$/, "", $(i+1) ); printf("\"%s\",",$(i+1));} print ")" }' > insert.sql
+  521  vi insert.sql 
+  522  head -1 col.dat |awk -F'^' '{ print "INSERT INTO #TABLE# VALUES ("; for (i = 0;i < NF;i++){ if (i == NF-2) continue; gsub(/^ *| *$/, "", $(i+1) ); printf("\"%s\",",$(i+1));} print ")" }'
+  523  head col.dat |awk -f test.awk 
+  524  head col.dat |awk -f test.awk |less
+  525  vi col.dat 
+  526  head col.dat |awk -f test.awk |less
+  527  cat col.dat |awk -f test.awk > temp
+  528  vi temp 
+  529  vi col.dat 
+  530  head col.dat |awk -f test.awk |less
+  531  cat col.dat |awk -f test.awk > temp
+  532  vi temp
+  533  exit
+  534  ls
+  535  vi test.awk 
+  536  exit
+  537  cd dA/
+  538  head -1 col.dat |awk -F'^' '{ print "INSERT INTO #TABLE# VALUES ("; for (i = 0;i < NF;i++){ if (i == NF-2) continue; gsub(/^ *| *$/, "", $(i+1) ); printf("\"%s\",",$(i+1));} print ")" }'
+  539  scp hectorz@135.252.41.254:/home/hectorz/test.awk
+  540  scp hectorz@135.252.41.254:/home/hectorz/test.awk ./
+  541  ls
+  542  head col.dat | awk -f test.awk 
+  543  head col.dat | awk -f test.awk >temp
+  544  vi temp 
+  545  vi test.awk 
+  546  head col.dat | awk -f test.awk >temp
+  547  vi temp
+  548  vi test.awk 
+  549  head col.dat | awk -f test.awk >temp
+  550  vi test.awk 
+  551  head col.dat | awk -f test.awk >temp
+  552  vi test.awk 
+  553  head col.dat | awk -f test.awk >temp
+  554  vi test.awk 
+  555  head col.dat | awk -f test.awk >temp
+  556  vi test.awk 
+  557  head col.dat | awk -f test.awk >temp
+  558  vi temp 
+  559  vi test.awk 
+  560  cat temp 
+  561  vi temp 
+  562  vi test.awk 
+  563  head col.dat | awk -f test.awk >temp
+  564  vi temp 
+  565  vi test.awk 
+  566  cd ../
+  567  ls
+  568  ls -la
+  569  vi .vimrc 
+  570  source .vimrc
+  571  cd dA/
+  572  vi test.awk 
+  573  tmux
+  574  exit
+  575  vi col.dat 
+  576  ls
+  577  vi buglist.html 
+  578  sed -e 's#<tr valign="TOP" align="LEFT">#\n<tr valign="TOP" align="LEFT">#g' -e 's#</\?nobr>##g' buglist.html |grep '^<tr valign="TOP" align="LEFT">' |sed  -e 's#</td><td>#^#g' -e 's#\(^.*id=\)\([0-9]*\)\(">[0-9]\{5\}\)</a>#\2#g' >col.dat
+  579  vi col.dat 
+  580  ls
+  581  gensql.sh
+  582  vi gensql.sh
+  583  chmod 755 gensql.sh 
+  584  ls
+  585  ./gensql.sh 
+  586  vi gensql.sh 
+  587  ./gensql.sh 
+  588  vi gensql.sh 
+  589  ./gensql.sh 
+  590  vi gensql.sh 
+  591  ./gensql.sh 
+  592  vi gensql.sh 
+  593  ./gensql.sh 
+  594  vi gensql.sh 
+  595  ./gensql.sh 
+  596  ./gensql.sh -f bug -n name
+  597  ./gensql.sh -f bug 
+  598  ./gensql.sh -f bug -a x
+  599  ./gensql.sh -f bug -n x
+  600  vi gensql.sh 
+  601  ./gensql.sh -f bug -a x
+  602  :q
+  603  ./gensql.sh -f bug -a x
+  604  vi gensql.sh 
+  605  ./gensql.sh -f bug -a x
+  606  vi gensql.sh 
+  607  ./gensql.sh -f bug -a x
+  608  ./gensql.sh -f bug 
+  609  vi gensql.sh 
+  610  ./gensql.sh -f bug 
+  611  ./gensql.sh -f 
+  612  ./gensql.sh -f x -n a
+  613  ./gensql.sh -f x -n 
+  614  ./gensql.sh -f 
+  615  vi gensql.sh 
+  616  ./gensql.sh -f 
+  617  ./gensql.sh -f x
+  618  ./gensql.sh -f x -n 
+  619  ./gensql.sh -f x -n a
+  620  ./gensql.sh -f x 
+  621  vi gensql.sh 
+  622  ./gensql.sh -n x 
+  623  :q
+  624  vi gensql.sh 
+  625  ./gensql.sh -n x 
+  626  vi gensql.sh 
+  627  ./gensql.sh -n x 
+  628  vi gensql.sh 
+  629  ./gensql.sh -n x 
+  630  vi gensql.sh 
+  631  ./gensql.sh -n x 
+  632  ./gensql.sh -f x 
+  633  ./gensql.sh -f x -n
+  634  ./gensql.sh -f x -n a
+  635  :q
+  636  ./gensql.sh -f x -n a
+  637  vi gensql.sh 
+  638  ./gensql.sh -f buglist.html 
+  639  ./gensql.sh -f buglist.html -n a
+  640  vi gensql.sh 
+  641  ./gensql.sh -f buglist.html -n a
+  642  vi gensql.sh 
+  643  ./gensql.sh -f buglist.html -n a
+  644  ls
+  645  vi insert_a.sql 
+  646  vi gensql.sh 
+  647  ./gensql.sh -f buglist.html -n a
+  648  vi gensql.sh 
+  649  ./gensql.sh -f buglist.html -n a
+  650  vi insert_a.sql 
+  651  ls -la
+  652  rm -fr temp.27*
+  653  ls
+  654  rm createCsv.py 
+  655  ls
+  656  rm col.dat 
+  657  ls
+  658  vi query.html 
+  659  rm query.html 
+  660  ls
+  661  rm tr.dat 
+  662  ls
+  663  rm insert_a.sql 
+  664  ls
+  665  vi insert.sql 
+  666  rm insert.sql 
+  667  ls
+  668  vi test.awk 
+  669  rm test.awk 
+  670  ls
+  671  vi gensql.sh 
+  672  ./gensql.sh -f buglist.html -n a
+  673  vi insert_a.sql 
+  674  vi gensql.sh 
+  675  ls
+  676  rm insert_a.sql 
+  677  ./gensql.sh -f buglist.html -n Year2017
+  678  vi gensql.sh 
+  679  ./gensql.sh -f buglist.html -n Year2017
+  680  vi insert_Year2017.sql 
+  681  ls
+  682  sudo yum install django
+  683  pip install Django==2.0
+  684  curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+  685  curl http://bootstrap.pypa.io/get-pip.py -o get-pip.py
+  686  curl http://bootstrap.pypa.io/get-pip.py 
+  687  ls
+  688  cd ../
+  689  ls
+  690  exit
+  691  head -12 | awk  -f test.awk 
+  692  head -12 col.dat| awk  -f test.awk 
+  693  vi test.awk 
+  694  head -12 col.dat| awk  -f test.awk 
+  695  vi test.awk 
+  696  head -12 col.dat| awk  -f test.awk 
+  697  vi test.awk 
+  698  head -12 col.dat| awk  -f test.awk 
+  699  vi test.awk 
+  700  head -12 col.dat| awk  -f test.awk 
+  701  vi test.awk 
+  702  head -12 col.dat| awk  -f test.awk 
+  703  vi test.awk 
+  704  head -12 col.dat| awk  -f test.awk 
+  705  man awk
+  706  head -12 col.dat| awk  -v table=DBTable -f test.awk 
+  707  vi test.awk 
+  708  head -12 col.dat| awk  -v table=DBTable -f test.awk 
+  709  vi test.awk 
+  710  head -12 col.dat| awk  -v table=DBTable -f test.awk 
+  711  cat col.dat| awk  -v table=DBTable -f test.awk >insert.sql 
+  712  vi insert.sql 
+  713  vi test.awk 
+  714  cat col.dat| awk  -v table=DBTable -f test.awk >insert.sql 
+  715  vi insert.sql 
+  716  vi test.awk 
+  717  cat col.dat| awk  -v table=DBTable -f test.awk >insert.sql 
+  718  vi insert.sql 
+  719  vi test.awk 
+  720  cat col.dat| awk  -v table=DBTable -f test.awk >insert.sql 
+  721  vi test.awk 
+  722  cat col.dat| awk  -v table=DBTable -f test.awk >insert.sql 
+  723  vi insert.sql 
+  724  man getopts
+  725  ls
+  726  cat test.awk 
+  727  vi test.awk 
+  728  exit
+  729  ls
+  730  cd dA/
+  731  ls
+  732  vi col.dat 
+  733  vi temp 
+  734  rm temp 
+  735  ls
+  736  vi insert.sql 
+  737  vi test.awk 
+  738  head col.dat |awk -f test.awk 
+  739  head -1 col.dat |awk -f test.awk 
+  740  vi test.awk 
+  741  tmux ls
+  742  tmux 
+  743  ls
+  744  cd ../
+  745  ls
+  746  python get-pip.py 
+  747  python get-pip.py --proxy="http://135.251.33.16:80"
+  748  sudu yum install python-pip python-wheel
+  749  pwd
+  750  uname -a
+  751  cat /etc/redhat-release 
+  752  docker
+  753  docker --help
+  754  docer --version
+  755  docker --version
+  756  docker images
+  757  docker image ls
+  758  docker system df
+  759  docker ps
+  760  docker ps -a
+  761  docker image ls -f dangling=true
+  762  docker image ls
+  763  docker image ls -a
+  764  docker image ls friendlyhello
+  765  docker image ls python
+  766  docker image ls -f since=hectorany/get-started
+  767  docker image ls -f since=hectorany/get-started:part2
+  768  docker image ls -f since=mysql
+  769  docker image ls --format "{{.ID}}: {{.Repository}}"
+  770  pwd
+  771  vi .bash_profile 
+  772  ls -a
+  773  vi .vimrc
+  774  docker image ls --format "table {{.ID}}\t{{.Repository}}\t{{.Tag}}"
+  775  docker images
+  776  docker run centos /bin/echo 'hello'
+  777  docker run centos /bin/echo "hello world"
+  778  docker run -it centos /bin/bash
+  779  docker ps
+  780  docker ps -a
+  781  docker container start 6caa
+  782  docker ps 
+  783  docker stop 6caa
+  784  docker ps 
+  785  docker ps -a
+  786  docker container kill 6caa
+  787  docker container rm --help
+  788  docker container rm 6caa
+  789  docker ps -a
+  790  echo $PSA
+  791  echo $PS1
+  792  cat /etc/hostname
+  793  echo $PS2
+  794  df
+  795  du
+  796  uname -a
+  797  echo $USER
+  798  ll
+  799  docker run hello-world
+  800  exit
+  801  docker ps
+  802  docker stop 6caa
+  803  ls
+  804  tar zxvf hd2u-1.0.0.tgz 
+  805  ls
+  806  cd hd2u-1.0.0/
+  807  ls
+  808  ./configure 
+  809  sudo yum install libpopt
+  810  cd ../
+  811  curl http://rpm5.org/files/popt/popt-1.16.tar.gz > popt.tar.gz
+  812  ls
+  813  tar zxvf popt-1.16.tar.gz 
+  814  ls
+  815  rm popt.tar.gz 
+  816  ls
+  817  cd popt-1.16/
+  818  ls
+  819  ./configure 
+  820  make
+  821  make install
+  822  sudo make install
+  823  cd ../
+  824  ls
+  825  cd hd2u-1.0.0/
+  826  ls
+  827  ./configure 
+  828  make
+  829  sudo make install
+  830  cd ../
+  831  ls
+  832  cd mysite/
+  833  ls
+  834  ls -R
+  835  ls -R |dos2unix 
+  836  ls
+  837  grep -inR "Created on" ./
+  838  ls
+  839  cd mysite/
+  840  ls
+  841  cd ../
+  842  ls
+  843  cd DA
+  844  ls
+  845  cd ../
+  846  ls
+  847  cd database/
+  848  ls
+  849  cd ../
+  850  ls
+  851  cd db/
+  852  ls
+  853  cd ../
+  854  ls
+  855  cd DA
+  856  ls
+  857  cd template/
+  858  ls
+  859  cd DA/
+  860  ls
+  861  vi dblist.html 
+  862  vi db.html 
+  863  ls
+  864  cd ../
+  865  ls
+  866  cd ../
+  867  ls
+  868  cd ./
+  869  ls
+  870  cd ../
+  871  ls
+  872  cd db/
+  873  ls
+  874  vi views.py
+  875  cd ~
+  876  ls
+  877  vi .vimrc 
+  878  vi /home/hectorz/mysite/dataoperations/tables.py
+  879  python
+  880  vi /home/hectorz/mysite/db/views.py
+  881  sudo yum install python-pip python-wheel
+  882  cd /etc/yum.repos.d/
+  883  ls
+  884  wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo
+  885  su root
+  886  cd ~
+  887  yum install python-setuptools
+  888  sudo yum upgrade python-setuptools
+  889  sudo yum install python-setuptools
+  890  sudo yum install python-pip python-wheel
+  891  pip install Django==2.0
+  892  ls
+  893  ls -la
+  894  vi .bashrc 
+  895  source .bashrc
+  896  pip install Django==2.0
+  897  ping 135.251.33.16
+  898  alias
+  899  vi .bashrc
+  900  source .bashrc
+  901  pip install Django==2.0
+  902  pip install --upgrade pip
+  903  vi alias
+  904  vi .bashrc
+  905  source .bashrc
+  906  pip install --upgrade pip
+  907  pip install --upgrade pip --proxy="http://135.251.33.16:80"
+  908  pip install -U pip
+  909  pip install -U pip --proxy="https://135.251.33.16:80"
+  910  sudo yum update pip
+  911  sudo yum update python-pip
+  912  sudo yum remove python-pip
+  913  ls
+  914  python get-pip.py --proxy="https://135.251.33.16:80"
+  915  sudo python get-pip.py --proxy="https://135.251.33.16:80"
+  916  sudo python get-pip.py --proxy="http://135.251.33.16:80"
+  917  su root
+  918  vi get-pip.py 
+  919  ls
+  920  rm pip-9.0.1-py2.py3-none-any.whl 
+  921  ls
+  922  tar zxvf pip-9.0.1.tar.gz 
+  923  ls
+  924  cd pip-9.0.1/
+  925  ls
+  926  vi setup.cfg 
+  927  python setup.py 
+  928  python setup.py cmd --help
+  929  python setup.py install --help
+  930  python setup.py install
+  931  su root
+  932  python
+  933  cd ../
+  934  ls
+  935  rm -rf pip*
+  936  ls
+  937  history |grep mysql
+  938  docker run -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=test mysql
+  939  docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=test mysql
+  940  python
+  941  pip install MySQL-python --proxy="https://135.251.33.16:80"
+  942  gcc
+  943  sudo yum install gcc
+  944  gcc
+  945  sudo yum install python-devel
+  946  pip install MySQL-python --proxy="https://135.251.33.16:80"
+  947  su root
+  948  python
+  949  ls
+  950  cd mysite/
+  951  ls
+  952  cd data
+  953  cd dataoperations/
+  954  ls
+  955  ./tables.py 
+  956  sudo yum install doc2unix
+  957  ks
+  958  ls
+  959  python tables.py 
+  960  cd ../
+  961  ls
+  962  ptython manage.py migrate
+  963  python manage.py migrate
+  964  vi /home/hectorz/mysite/mysite/settings.py
+  965  python manage.py migrate
+  966  vi /home/hectorz/mysite/mysite/settings.py
+  967  python manage.py migrate
+  968  pip install django-bootstrap-toolkit --proxy="https://135.251.33.16:80"
+  969  sudo pip install django-bootstrap-toolkit --proxy="https://135.251.33.16:80"
+  970  python manage.py migrate
+  971  vi /home/hectorz/mysite/DA/urls.py
+  972  python manage.py migrate
+  973  vi /home/hectorz/mysite/DA/forms.py
+  974  vi ./test/urls.py
+  975  vi ./test/views.py
+  976  vi ./dsc/urls.py
+  977  vi ./dsc/views.py
+  978  vi ./db/urls.py
+  979  vi ./db/views.py
+  980  vi ./DA/forms.py
+  981  python manage.py migrate
+  982  sudo pip install nltk --proxy="https://135.251.33.16:80"
+  983  python manage.py migrate
+  984  vi /home/hectorz/mysite/db/views.py
+  985  python manage.py migrate
+  986  python manage.py runserver
+  987  python manage.py runserver 135.252.135.53:8080
+  988  python manage.py runserver 135.252.135.53:8081
+  989  ls
+  990  cd mysite/
+  991  ls
+  992  vi settings.py
+  993  python manage.py runserver 135.252.135.53:8081
+  994  cd ../
+  995  python manage.py runserver 135.252.135.53:8081
+  996  ls
+  997  docker ps
+  998  docker attach cb161beb3a29
+  999  exit
+ 1000  docker logs
+ 1001  docker logs cv
+ 1002  docker ps
+ 1003  docker logs e5
+ 1004  ls
+ 1005  cd mysite/
+ 1006  ls
+ 1007  lsof -i
+ 1008  netstat -tnulp |grep 8080
+ 1009  netstat -tnulp 
+ 1010  nginx
+ 1011  nginxd
+ 1012  lsof -i:8080
+ 1013  echo $DOCKER_RUNTIME
+ 1014  docker exec -it mysql bash
+ 1015  docker ps
+ 1016  docker exec -it e5b bash
+ 1017  docker ps
+ 1018  cd ../
+ 1019  ls
+ 1020  cd docker/
+ 1021  ls
+ 1022  cd mysql/
+ 1023  ls
+ 1024  mkdir sql
+ 1025  ls
+ 1026  ls -R
+ 1027  ls
+ 1028  docker build .
+ 1029  docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=bugzilla mysql
+ 1030  docker build .
+ 1031  docker images
+ 1032  docker build -t hectorany/bugzilla .
+ 1033  docker images
+ 1034  docker ps
+ 1035  docker kill a33
+ 1036  docker run -p 3306:3306 hectorany/buzilla
+ 1037  docker pull hectorany/bugzilla
+ 1038  docker run -p 3306:3306 hectorany/bugzilla
+ 1039  docker build -t hectorany/bugzilla .
+ 1040  docker run -p 3306:3306 hectorany/bugzilla
+ 1041  docker build -t hectorany/bugzilla .
+ 1042  ls
+ 1043  ls -R
+ 1044  mv sql/sources.sql ./
+ 1045  docker build -t hectorany/bugzilla .
+ 1046  mv sources.sql ./sql/
+ 1047  docker build -t hectorany/bugzilla .
+ 1048  docker run -p 3306:3306 hectorany/bugzilla
+ 1049  docker container 
+ 1050  docker container ls
+ 1051  cd /data
+ 1052  cd /
+ 1053  ls
+ 1054  cd var/
+ 1055  ls
+ 1056  cd db/
+ 1057  ls
+ 1058  vi Makefile 
+ 1059  ls
+ 1060  cd ../
+ 1061  mkdir data
+ 1062  sudo mkdir data
+ 1063  ls
+ 1064  sudo mkdir mysql/data
+ 1065  sudo mkdir -p mysql/data
+ 1066  cd mysql/data/
+ 1067  ls
+ 1068  pwd
+ 1069  cd -
+ 1070  cd ~
+ 1071  ls
+ 1072  cd mysite/
+ 1073  ls
+ 1074  cd ../
+ 1075  ls
+ 1076  cd docker/
+ 1077  ls
+ 1078  cd mysql/
+ 1079  ls
+ 1080  docker run -p 3306:3306 hectorany/bugzilla
+ 1081  docker build -t hectorany/bugzilla .
+ 1082  docker run -v /var/mysql/data:/var/lib/mysql -p 3306:3306 hectorany/bugzilla 
+ 1083  docker run -d -v /var/mysql/data:/var/lib/mysql -p 3306:3306 hectorany/bugzilla 
+ 1084  docker logs a7
+ 1085  vi sql/sources.sql 
+ 1086  docker build -t hectorany/bugzilla .
+ 1087  docker run -d -v /var/mysql/data:/var/lib/mysql -p 3306:3306 hectorany/bugzilla 
+ 1088  docker ps
+ 1089  docker kill a7
+ 1090  docker run -d -v /var/mysql/data:/var/lib/mysql -p 3306:3306 hectorany/bugzilla 
+ 1091  docker stop a4
+ 1092  docker ps 
+ 1093  docker container ls
+ 1094  docker start a4
+ 1095  docker container 
+ 1096  docker container ls
+ 1097  docker push --help
+ 1098  docker push hectorany/bugzilla
+ 1099  docker run nginx
+ 1100  docker images
+ 1101  docker run nginx
+ 1102  docker container ls -a
+ 1103  docker container rm 3e3
+ 1104  docker container ls -a
+ 1105  ls
+ 1106  docker images ls
+ 1107  docker images 
+ 1108  docker images rm 991d4b185130
+ 1109  docker images --help
+ 1110  docker --hel[
+ 1111  docker image
+ 1112  docker image rm 991d4b185130
+ 1113  docker image ls
+ 1114  docker image rm 2bf810362fb7
+ 1115  docker image rm fef70a0677d9
+ 1116  docker image rm 706a7fb3dd15
+ 1117  docker image rm 2059a6b989b0
+ 1118  docker image rm fb4e291e0f7b
+ 1119  docker image ls
+ 1120  docker image rm b32ecf0b7535
+ 1121  docker image rm 88389cb1af21
+ 1122  df -hl
+ 1123  docker image rm 6ad733544a63
+ 1124  df -hl
+ 1125  cd /
+ 1126  sudo du -hl --max-depth=1
+ 1127  cd /var
+ 1128  sudo du -hl --max-depth=1
+ 1129  cd lib
+ 1130  sudo du -hl --max-depth=1
+ 1131  cd docker/
+ 1132  sudo du -hl --max-depth=1
+ 1133  ls
+ 1134  sudo ls
+ 1135  sudo cd volumes
+ 1136  sudo ls
+ 1137  sudo du -hl --max-depth=1
+ 1138  sudo cd volumes
+ 1139  su root
+ 1140  cd ~
+ 1141  docker image ls -a
+ 1142  docker image rm 5ea737a86ae7
+ 1143  docker image ls -a
+ 1144  docker image rm 41fc3c9048e5
+ 1145  docker image rmi 41fc3c9048e5
+ 1146  docker container ls -a
+ 1147  docker stop a4a03f1532ae
+ 1148  docker rm a4a03f1532ae
+ 1149  docker container ls -a
+ 1150  docker image ls -a
+ 1151  docker image rm 41fc3c9048e5
+ 1152  docker image rm 5ea737a86ae7
+ 1153  docker images
+ 1154  docker image ls --help
+ 1155  docker image ls -a
+ 1156  cd mysite/
+ 1157  cd ../
+ 1158  ls
+ 1159  cd docker/
+ 1160  ls
+ 1161  cd mysql/
+ 1162  ls
+ 1163  vi startBugzillaDB.sh
+ 1164  vi startBugzillaDB.sh 
+ 1165  mv startBugzillaDB.sh dbctrl.sh
+ 1166  chmod 755 dbctrl.sh 
+ 1167  ./dbctrl.sh 
+ 1168  vi dbctrl.sh 
+ 1169  ./dbctrl.sh 
+ 1170  vi dbctrl.sh 
+ 1171  ./dbctrl.sh start
+ 1172  ./dbctrl.sh 
+ 1173  docker ps
+ 1174  docker container ls
+ 1175  docker container ls -a
+ 1176  docker log 9e2b68c044cd
+ 1177  docker logs 9e2b68c044cd
+ 1178  ./dbctrl.sh 
+ 1179  vi dbctrl.sh 
+ 1180  ./dbctrl.sh start
+ 1181  docker logs 9e2b68c044cd
+ 1182  docker ps
+ 1183  ./dbctrl.sh 
+ 1184  ./dbctrl.sh exec
+ 1185  ./dbctrl.sh 
+ 1186  ./dbctrl.sh stop
+ 1187  ./dbctrl.sh 
+ 1188  ./dbctrl.sh stop
+ 1189  vi dbctrl.sh 
+ 1190  ./dbctrl.sh all
+ 1191  docker container ls -a
+ 1192  docker rm 9e2b68c044cd
+ 1193  ./dbctrl.sh start
+ 1194  cd ../../
+ 1195  ls
+ 1196  cd dA/
+ 1197  ls
+ 1198  cd getBuglist/
+ 1199  ls
+ 1200  vi temp 
+ 1201  ls
+ 1202  cd ../
+ 1203  ./gensql.sh -f ./getBuglist/temp -n Y2016
+ 1204  vi insert_Y2016.sql 
+ 1205  ./gensql.sh -f ./getBuglist/temp -n Y2016
+ 1206  vi insert_Y2016.sql 
+ 1207  ls
+ 1208  vi buglist.html 
+ 1209  ./gensql.sh -f ./getBuglist/temp -n Y2016
+ 1210  vi insert_Y2016.sql 
+ 1211  vi test.awk 
+ 1212  vi gensql.sh 
+ 1213  ./gensql.sh -f ./getBuglist/temp -n Y2016
+ 1214  vi insert_Y2016.sql 
+ 1215  ls
+ 1216  cd ../
+ 1217  ls
+ 1218  cd mysite/
+ 1219  ls
+ 1220  cd db
+ 1221  ls
+ 1222  cd ../
+ 1223  ls
+ 1224  cd DA
+ 1225  ls
+ 1226  vi models.py
+ 1227  cd template/DA
+ 1228  ls
+ 1229  cp createDBwizad2.html createDBwizad.html
+ 1230  vi createDBwizad.html 
+ 1231  ls
+ 1232  vi login.html 
+ 1233  cd ../
+ 1234  ls
+ 1235  cd ../../
+ 1236  ls
+ 1237  cd uploads/
+ 1238  ls
+ 1239  ls -la
+ 1240  cat temp.txt 
+ 1241  ls
+ 1242  ls -la
+ 1243  ls
+ 1244  cd ../
+ 1245  ls
+ 1246  cd db/
+ 1247  ls
+ 1248  vi urls.py
+ 1249  ls
+ 1250  cd ../
+ 1251  ls
+ 1252  cd dataoperations/
+ 1253  ls
+ 1254  vi schema.py 
+ 1255  cp ~/dA/getBuglist/getbuglist.py ./
+ 1256  ls
+ 1257  vi getbuglist.py 
+ 1258  cd ~
+ 1259  ls
+ 1260  cd docker/
+ 1261  ls
+ 1262  mkdir mysite
+ 1263  cd mysite/
+ 1264  ls
+ 1265  history > command list
+ 1266  history > command_ist

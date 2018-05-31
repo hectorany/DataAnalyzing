@@ -1,0 +1,9 @@
+version: "3"
+
+services:
+    bugzillaDB:
+        images: hectorany/bugzilla
+        volumes:
+            - /var/mysql/data:/var/lib/mysql
+        networks:
+            - danetwork
