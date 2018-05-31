@@ -1,0 +1,158 @@
+{% extends "DA/base.html" %}
+{% load staticfiles %}
+{% block main_fram %}
+{% block beadcrumb %}
+<div class="row">
+		<div class="col-md-12">
+			<ul class="breadcrumb">
+				<li>
+					<a href="/index.html">Home</a> <span class="divider">/</span>
+				</li>
+				<li>
+					<a href="#">DataBase</a> <span class="divider">/</span>
+				</li>
+				<li>
+					Operations
+				</li>
+			</ul>
+		</div>
+	</div>
+{% endblock %}
+
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="row clearfix">
+				<div class="col-md-3 column">
+					<label for="basic" class="control-label">Get Counting based on column</label>
+				</div>
+				<div class="col-md-3 column">
+					<select id="column1" class="selectpicker show-tick form-control" data-live-search="true">
+				        	<option></option>
+				          {% for item in items %}
+							<option>{{ item }}</option>
+							{% endfor %}
+				        </select>
+				</div>
+				<div class="col-md-3 column">
+					<label for="basic" class="control-label">Second level Counting column</label>
+				</div>
+				<div class="col-md-3 column">
+					<select id="column2" class="selectpicker show-tick form-control" data-live-search="true">
+			        <option></option>
+			          {% for item in items %}
+						<option>{{ item }}</option>
+						{% endfor %}
+			        </select>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="row clearfix">
+				<div class="col-md-1 column"><label for="basic" class="control-label">From:</label>
+				</div>
+				<div class="col-md-1 column">
+					<input type="text" class="form-control" id="min" placeholder="min">
+				</div>
+				<div class="col-md-1 column col-md-offset-1"><label for="basic" class="control-label">To:</label>
+				</div>
+				<div class="col-md-1 column">
+					<input type="text" class="form-control" id="max" placeholder="max">
+				</div>
+				<div class="col-md-2 column right col-md-offset-4">
+					<button id="showme" class="btn btn-primary"  onclick="showme()">
+					Show me
+					
+				</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/drilldown.js"></script>
+
+ <div id="container"></div>
+
+
+
+  
+<script>
+
+//jQuery(function ($) {
+	
+	function showme(){
+		
+		var dataurl = '/db/getnumbers?dbname={{ dbname }}';
+		if($("#column1").val())
+			dataurl = dataurl+'&column1='+$("#column1").val();
+		if($("#column2").val())
+			dataurl = dataurl+'&column2='+$("#column2").val();
+		if($("#min").val())
+			dataurl = dataurl+'&min='+$("#min").val();
+		if($("#max").val())
+			dataurl = dataurl+'&max='+$("#max").val();
+		$.getJSON(dataurl, function (data) {
+			var mdata;
+			var drilldowns;
+			mdata = data["data"];
+			drilldowns = data["drilldowns"];
+			console.log(data);
+		
+		Highcharts.chart('container', {
+			chart: {
+			type: 'column'
+			},
+			title: {
+			text: 'Bug counting tables'
+			},
+			subtitle: {
+			text: 'Click the columns to view second counting level.'
+			},
+			xAxis: {
+			type: 'category'
+			},
+			yAxis: {
+			title: {
+			    text: 'Bug numbers'
+			}
+
+			},
+			legend: {
+			enabled: false
+			},
+			plotOptions: {
+			series: {
+			    borderWidth: 0,
+			    dataLabels: {
+			        enabled: true
+			        
+			    }
+			}
+			},
+
+			tooltip: {
+			headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+			pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> bugs<br/>'
+			},
+
+			series: [{
+			name: 'Bug numbers',
+			colorByPoint: true,
+			data: mdata
+			}],
+			drilldown: {
+			series: drilldowns
+			}
+			});
+		});
+        };
+   // }); 
+//Create the chart
+
+</script>	                
+{% endblock %}

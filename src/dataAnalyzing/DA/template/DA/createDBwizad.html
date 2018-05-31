@@ -1,0 +1,278 @@
+{% load staticfiles %}
+
+{% block create_DB %}
+ 
+<div class="wizard" id="satellite-wizard1" data-title="Create database with import data from other DB">
+
+			<!-- Step 1 Name & FQDN -->
+			<div class="wizard-card" data-cardname="dbname1">
+				<h3>DB Name</h3>
+
+				<div class="wizard-input-section">
+					<div class="form-group">
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="dbname1" name="dbname1" placeholder="DataBase Name" data-validate="validateServerLabel">
+						</div>
+					</div>	
+				</div>	
+				<div class="wizard-input-section">
+					<div class="form-group">
+						<input type="checkbox" id="shown1"/> Public to all
+					</div>
+				</div>
+			</div>
+
+
+			<div class="wizard-card wizard-card-overlay" data-cardname="schema1">
+				<h3>Data Schema</h3>
+				<div class="wizard-input-section">
+					<p>
+						Please select data schema for this database
+					</p>
+
+					<select name="schema1" data-placeholder="Schema Name" style="width:350px;" class="chzn-select form-control">
+						<option value=""></option>
+						{% for dsc in dsc_list %}
+						<option>{{ dsc.name }}</option>
+						{% endfor%}
+					</select>
+				</div>
+				<div class="alert hide">
+					Schema detail
+				</div>
+			</div>
+			<div class="wizard-card">
+				<h3>Configure Database</h3>
+				<div class="wizard-input-section">
+			 	<form class="">
+					<table class='table-condensed text-left'>
+						<tr>
+							<td >
+								<span class="">Host</span>
+							</td>
+							<td colspan="3">
+								<input type="text" id='host' class="form-control small" placeholder="Enter the IP/FQDN of db host">
+							</td>
+						</tr>
+						<tr>
+							<td >
+								<span class="">Database</span>
+							</td>
+							<td colspan="3">
+								<input type="text" id='databname1' class="form-control small" placeholder="Enter the DB name">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span class="">User</span>
+							</td>
+							<td>
+								<input type="text" id='user' class="form-control small" placeholder="User name">
+							</td>
+							<td>
+								<span class="">Password</span>
+							</td>
+							<td>
+								<input type="password" id='password' class="form-control" placeholder="Password">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span class="">From</span>
+							</td>
+							<td>
+								<input type="text" id='datefrom' class="form-control" placeholder="'from'">
+							</td>
+							<td>
+								<span class="">To</span>
+							</td>
+							<td>
+								<input type="text" id='dateto' class="form-control" placeholder="'end'">
+							</td>
+						</tr>
+					</table>
+
+					<button type='reset' class="btn btn-warning pull-right"  >Reset</button>
+				</form>
+	
+				</div>
+
+				<div class="wizard-error">
+					<div class="alert alert-error">
+						<strong>There was a problem</strong> with your submission.
+						Please correct the errors and re-submit.
+					</div>
+				</div>
+	
+				<div class="wizard-failure">
+					<div class="alert alert-error">
+						<strong>There was a problem</strong> submitting the form.
+						Please try again in a minute.
+					</div>
+				</div>
+	
+				<div class="wizard-success">
+					<div class="alert alert-success">
+						<span class="create-server-name"></span>DB Created <strong>Successfully.</strong>
+					</div>
+	
+					<a class="btn btn-default create-another-server">Create another DB</a>
+					<span style="padding:0 10px">or</span>
+					<a class="btn btn-success im-done">Done</a>
+				</div>
+			</div>
+		</div>
+
+		<script src="{% static "js/jquery-2.0.3.min.js" %}" type="text/javascript"></script>
+		<script src="{% static "chosen/chosen.jquery.js" %}"></script>
+		<script src="{% static "js/bootstrap.min.wz.js" %}" type="text/javascript"></script>
+		<script src="{% static "js/prettify.js" %}" type="text/javascript"></script>
+		<script src="{% static "js/bootstrap-wizard.js" %}" type="text/javascript"></script>
+		<script type="text/javascript">
+		function dataImport() {
+            var form_data = new FormData();
+            var file_info = document.getElementById("host").value;
+            var dbname = document.getElementById("databname1").value;
+            var user = document.getElementById("user").value;
+            var password = document.getElementById("password").value; 
+            var start = document.getElementById("datefrom").value;
+            var end = document.getElementById("dateto").value;
+            form_data.append('dbhost',file_info);
+            form_data.append('dbname',dbname);
+            form_data.append('user',user);
+            form_data.append('password',password);
+            form_data.append('start',start);
+            form_data.append('end',end);
+            //if(file_info==undefined)暂且不许要判断是否有附件
+                //alert('你没有选择任何文件');
+                //return false
+
+			console.log(form_data);
+            // 提交ajax的请求
+            $.ajax({
+                url:"/db/import",
+                type:'POST',
+                data: form_data,
+                processData: false,  // tell jquery not to process the data
+                contentType: false, // tell jquery not to set contentType
+
+            }); // end ajax
+        };
+            
+			$(document).ready(function() {
+				$.fn.wizard.logging = true;
+				var wizard = $('#satellite-wizard1').wizard({
+					submitUrl: 'db/import/', 
+					keyboard : false,
+					contentHeight : 400,
+					contentWidth : 700,
+					backdrop: 'static'
+				});
+				
+				$(".chzn-select").chosen();
+
+
+				var pattern = /\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b/;
+				x = 46;
+
+
+				wizard.on('closed', function() {
+					wizard.reset();
+				});
+
+				wizard.on("reset", function() {
+					wizard.modal.find(':input').val('').removeAttr('disabled');
+					wizard.modal.find('.form-group').removeClass('has-error').removeClass('has-succes');
+					wizard.modal.find('#fqdn').data('is-valid', 0).data('lookup', 0);
+				});
+
+				
+				wizard.on("submit",  
+					
+				function(wizard) {
+					this.log('Submiting--------------');
+					//dataImport();
+					var da= this.serialize();
+					var submit = {
+						//"datafile": $("#datafile").val(),
+						"shown1":$("#shown1").val(),
+						"post":da,
+						"dbhost":document.getElementById("host").value,
+						"databname": document.getElementById("databname1").value,
+						"user": document.getElementById("user").value,
+						"password": document.getElementById("password").value,
+						"start": document.getElementById("datefrom").value,
+						"end":document.getElementById("dateto").value
+					};
+					this.log('seralize()');
+					this.log(this.serialize());
+					this.log('serializeArray()');
+					this.log(this.serializeArray());
+					$.post('db/import',submit,"json");
+			
+					setTimeout(function() {
+						wizard.trigger("success");
+						wizard.hideButtons();
+						wizard._submitting = false;
+						wizard.showSubmitCard("success");
+						wizard.updateProgressBar(0);
+					}, 20000);
+				});
+				
+				wizard.el.find(".wizard-success .im-done").click(function() {
+					wizard.hide();
+					setTimeout(function() {
+						wizard.reset();	
+					}, 250);
+					
+				});
+			
+				wizard.el.find(".wizard-success .create-another-server").click(function() {
+					wizard.reset();
+				});
+			
+				$(".wizard-group-list").click(function() {
+					alert("Disabled for demo.");
+				});
+
+				$('#open-wizard1').click(function(e) {
+					e.preventDefault();
+					wizard.show();
+				});
+			});
+
+			
+			
+
+			function getCookie(name) {
+			    var cookieValue = null;
+			    if (document.cookie && document.cookie != '') {
+			        var cookies = document.cookie.split(';');
+			        for (var i = 0; i < cookies.length; i++) {
+			            var cookie = jQuery.trim(cookies[i]);
+			            // Does this cookie string begin with the name we want?
+			            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+			                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+			                break;
+			            }
+			        }
+			    }
+			    return cookieValue;
+			}
+			var csrftoken = getCookie('csrftoken');
+			function csrfSafeMethod(method) {
+			    // these HTTP methods do not require CSRF protection
+			    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+			}
+			$.ajaxSetup({
+			    beforeSend: function(xhr, settings) {
+			        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+			            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+			        }
+			    }
+			});
+
+	
+		</script>
+
+{% endblock %}

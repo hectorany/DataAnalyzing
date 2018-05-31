@@ -1,0 +1,18 @@
+{% block header %}
+<nav class="navbar navbar-default" role="navigation">
+	  <div class="container-fluid">
+		<div class="navbar-header">
+		  <a class="navbar-brand" href="/index.html">Bugzilla Data Analysis</a>
+		</div>
+		<ul class="nav navbar-nav navbar-right">
+			{% if login_already %}
+		  <li><a href="/da/register">{{ user_name }}</a></li>
+		  <li><a href=/da/login"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+		  	{% else %}
+		  	<li><a href="/da/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+		  <li><a href="/da/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+		  	{% endif %}
+		</ul>
+	  </div>
+</nav>
+{% endblock %}

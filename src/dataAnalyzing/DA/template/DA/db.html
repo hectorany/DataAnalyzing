@@ -1,0 +1,198 @@
+{% block db_fram %}
+
+<form method="post" >
+{% csrf_token %}
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="btn-group btn-group-sm">
+				 
+				<!--<button data-toggle="modal" class="btn btn-default" type="button" data-target="#myModal1">--> 
+				 <button id="open-wizard" class="btn btn-default"> 
+					<em class="glyphicon glyphicon-upload"></em> Upload
+				</button> 
+				<button id="open-wizard1" class="btn btn-default"> 
+					<em class="glyphicon glyphicon-cloud-upload"></em> Import
+				</button>
+				<button class="btn btn-default" type="button" onclick="window.location='dblist.html'">
+					<em class="glyphicon glyphicon-refresh"></em> Refresh
+				</button>
+			</div>
+			<table id="dbtb" class="table table-condensed table-hover">
+				<thead>
+					<tr>
+						<th>
+							Id
+						</th>
+						<th>
+							DataBase Name
+							
+						</th>
+						<th>
+							Created Date
+						</th>
+						<th>
+							Owner
+						</th>
+						<th>
+							Data Schema
+						</th>
+						<th>
+							Items
+						</th>
+						<th>
+							Action
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for db in db_list %}
+					<tr>
+						<td>
+							{{ db.id }}
+						</td>
+						
+						<td><a href="#" id="name{{ db.id }}" data-type="text" data-pk="{{ db.id }}" data-name="name" data-url="db/update" data-original-title="Enter db name">{{ db.name }}</a></td>
+					<script>$('#name{{ db.id }}').editable();</script>
+						</td>
+						<td>
+							{{ db.pub_date|date:"Y-m-d H:i:s" }}
+						</td>
+						<td>
+							Default
+						</td>
+						<td>
+							{{ db.data_schema }}
+							</td>
+							<td>
+							{{ db.items }}
+							</td>
+							<td>
+							
+							<button id="rm_bt{{ db.id }}" class="btn btn-danger btn-xs" type="button" title="Remove this item"
+        					data-toggle="tooltip" data-placement="right">
+					<em class="glyphicon glyphicon-remove"></em></button>
+							<p class="popover-options">
+								<a href="#" type="button" class="btn btn-danger btn-xs" title="Select Charts"  title="Deatils on this DB"
+								   data-container="body" data-toggle="popover" data-placement="left" 
+								   data-content="
+								   <div class='btn-group'>
+										    <button type='button' class='btn btn-primary btn-sm' onclick='redirctime_{{ db.id }}()'>TimeLine</button>
+										    <button type='button' class='btn btn-primary btn-sm' onclick='redircnumb_{{ db.id }}()'>Numbers</button>
+										    <button type='button' class='btn btn-primary btn-sm' onclick='redircword_{{ db.id }}()'>Keywords</button>
+										</div>
+										">
+									<em class="glyphicon glyphicon-signal"></em>
+								</a>
+							</p>
+							
+					<script>
+					function redirctime_{{ db.id }}(){
+						window.location='/db/timeline?schema={{ db.data_schema }}&dbname={{ db.name }}';
+					};
+					function redircnumb_{{ db.id }}(){
+						window.location='/db/numbcharts?schema={{ db.data_schema }}&dbname={{ db.name }}';
+					};
+					function redircword_{{ db.id }}(){
+						window.location='/db/keywords?schema={{ db.data_schema }}&dbname={{ db.name }}';
+					};
+						$(function () { $(".popover-options a").popover({html : true });});
+    					$(function () { $("[data-toggle='tooltip']").tooltip(); });
+   					    $('#rm_bt{{ db.id }}').click(function(){
+    					       $.ajax({
+    					                url:"db/remove", 					
+    					                data:{pk:"{{ db.id }}"},
+    					                type:'POST',
+    					                success:function(resp){
+    					                	alert(resp);
+    					                	window.location.href="/db";
+    					                }
+    					            });
+    					    });
+    					</script>
+							</td>
+					</tr>
+					
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="row">
+	<ul class="pager">
+    <li ><a href="#">Prev</a></li>
+    <li><a href="#">Next</a></li>
+	</ul>
+	</div>
+<script>
+
+$('#dbtb a').editable({
+    type: 'text',
+    name: 'DataBaseName',
+    url: 'db/update',
+    title: 'New Name',
+    
+    success: function(response, newValue) {
+	    if(!response.success) return response.msg;
+	},
+    error: function(response, newValue) {
+	    if(response.status === 500) {
+	        return 'Service unavailable. Please try later.';
+	    } else {
+	        return response.responseText;
+	    }
+	},
+	
+	params: function(params) {
+	    //originally params contain pk, name and value
+	    params.pk = 1;
+	    return params;
+	},
+	validate : function(value) {  
+                if (value == '') {  
+                    return 'Not be none';  
+                }  
+            } 
+
+});
+
+
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+var csrftoken = getCookie('csrftoken');
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    }
+});
+</script>
+</form>
+
+
+{% include "DA/createDBwizad2.html" %}
+{% include "DA/createDBwizad.html" %}
+</div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "DA/base.html" %}
+
+{% block main_fram %}
+{% block beadcrumb %}
+<div class="row">
+		<div class="col-md-12">
+			<ul class="breadcrumb">
+				<li>
+					<a href="/index.html">Home</a> <span class="divider">/</span>
+				</li>
+				<li>
+					<a href="#">Data Schema</a> <span class="divider">/</span>
+				</li>
+				<li>
+					Referencing
+				</li>
+			</ul>
+		</div>
+	</div>
+{% endblock %}
+{% include "DA/dsc.html"%}
+{% endblock %}

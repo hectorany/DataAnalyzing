@@ -1,0 +1,104 @@
+{% load staticfiles %}
+{% block dscedit %}
+
+    <div class="panel panel-default">
+
+        <div class="panel-body text-center">
+            <div id="grid"></div>
+        </div>
+    </div>
+<!-- you need to include the shieldui css and js assets in order for the grids to work -->
+<link rel="stylesheet" href="{% static "css/all.min.css" %}" />
+<script src="{% static "js/shieldui-lite-all.min.js" %}"></script>
+<script type="text/javascript">
+    jQuery(function ($) {
+        $("#grid").shieldGrid({
+            dataSource: {
+                data: {},
+                schema: {
+                    fields: {
+                        id: { path: "id", type: String },
+                        name: { path: "name", type: String },
+                        type: { path: "type", type: String },
+                        isGroup: { path: "stars", type: Boolean },
+                        isPrimary: { path: "stars", type: Boolean }
+                    }
+                },
+                
+            },
+            navigation: true,
+            sorting: {
+                multiple: true
+            },
+            rowHover: false,
+            editing: {
+                enabled: true,
+                type: "cell",
+                event: "click",
+                confirmation: {
+                    "delete": {
+                        enabled: true,
+                        template: function (item) {
+                            return "Delete row with ID = " + item.id
+                        }
+                    }
+                }
+            },
+            columns: [
+            	{ field: "id", title: "Id", width: "35px" },
+                { field: "name", title: "Name", width: "100px" },
+                { field: "type", title: "Type", width: "100px", editor: myCustomEditor },
+                { field: "isGroup", title: "Groupby" },
+                { field: "isPrimary", title: "PrimaryKey" },
+                {
+                    width: "80px",
+                    title: "Actions",
+                    buttons: [
+                        { cls: "deleteButton", commandName: "delete", caption: "<em class='btn-xs btn btn-danger glyphicon glyphicon-remove'></em>" }
+                    ]
+                }
+            ],
+            toolbar: [
+                {
+                    buttons: [
+                        { commandName: "insert", caption: "Add Data", class:"left" }
+                    ],
+                    position: "top"
+                }
+            ],
+			events:
+            {
+                getCustomEditorValue: function (e) {
+                    e.value = $("#dropdown").swidget().value();
+                    $("#dropdown").swidget().destroy();
+                }
+            },
+        });
+
+        
+        
+		function myCustomEditor(cell, item) {
+            $('<div id="dropdown"/>')
+                .appendTo(cell)
+                .shieldDropDown({
+                    dataSource: {
+                        data: ["TEXT", "INTEGER","Date"]
+                    },
+                    value: !item["type"] ? null : item["type"].toString()
+                }).swidget().focus();
+        };
+        // handle the Ctrl + G key pressed
+        $(document).keydown(function (e) {
+            if (e.ctrlKey && e.keyCode == 71) {
+                // focus the Grid by calling its focus() method
+                // this should focus the first cell inside it
+                $("#grid").swidget().focus();
+                // do not propagate the event
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }
+        });
+    });
+</script>
+{% endblock %}

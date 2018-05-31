@@ -1,0 +1,192 @@
+{% block dsc_fram %}
+
+<form method="post" >
+{% csrf_token %}
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="btn-group btn-group-sm">
+				<button data-toggle="modal" class="btn btn-default" type="button" data-target="#myModal">
+					<em class="glyphicon glyphicon-plus"></em> Add
+				</button> 
+				<button class="btn btn-default" type="button" onclick="window.location='dsclist.html'">
+					<em class="glyphicon glyphicon-refresh"></em> Refresh
+				</button>
+				
+			</div>
+			<table id="dsctb" class="table table-condensed table-hover">
+				<thead>
+					<tr>
+						<th>
+							Id
+						</th>
+						<th>
+							Data Schema Name
+						</th>
+						<th>
+							Created Date
+						</th>
+						<th>
+							Owner
+						</th>
+						<th>
+							DB Reference
+						</th>
+						<th>
+							Schema
+						</th>
+						<th>
+						Action
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for dsc in dsc_list %}
+				<tr>
+					<td>{{ dsc.id }}</td>
+					<td><a href="#" id="name{{ dsc.id }}" data-type="text" data-pk="{{ dsc.id }}" data-name="name" data-url="dsc/update" data-original-title="Enter schema name">{{ dsc.name }}</a></td>
+					<script>$('#name{{ dsc.id }}').editable();</script>
+					<td>{{ dsc.pub_date|date:"Y-m-d H:i:s" }}</td>
+					<td>{{ dsc.owner }}</td>
+					<td>
+							<button type="button" class="btn btn-info btn-xs" onclick=" window.location='dsclist.html?pk={{ dsc.id }}'">{{ dsc.db_created }}</button>
+					</td>
+					<td>
+					<button class="btn btn-xs popover-show" type="button" title="{{ dsc.name }} schema"
+        					data-container="body" data-html="true" data-placement="left" data-toggle="popover" data-content="<pre><code>{{ dsc.schem }}</code></pre>" >
+					<em class="glyphicon glyphicon-paperclip"></em></button>					
+					</td>
+					<td>
+							<button id="rm_bt{{ dsc.id }}" class="btn btn-danger btn-xs" type="button" title="Remove this item"
+        					data-toggle="tooltip" data-placement="right">
+					<em class="glyphicon glyphicon-remove"></em></button>
+					<script>
+    					$(function () { $("[data-toggle='tooltip']").tooltip(); });
+   					    $('#rm_bt{{ dsc.id }}').click(function(){
+    					       $.ajax({
+    					                url:"dsc/remove", 					
+    					                data:{pk:"{{ dsc.id }}"},
+    					                type:'POST',
+    					                success:function(resp){
+    					                	alert(resp);
+    					                	window.location.href="/dsc";
+    					                }
+    					            });
+    					    });
+    					</script>
+					
+					</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="row">
+	<ul class="pager">
+    <li ><a href="#">Prev</a></li>
+    <li><a href="#">Next</a></li>
+	</ul>
+	</div>
+	
+	<!-- Button trigger modal -->
+</form>	
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div id="dscModal" class="modal-dialog" role="document">
+  <form method='post' action='/dsc/addDsc'>
+	{% csrf_token %}
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Create Data Schema</h4>
+      </div>
+      <div class="modal-body">
+      <div id="alert_succ" class="alert alert-success alert-dismissable hide">
+            <button type="button" class="close" data-dismiss="alert"
+                    aria-hidden="true">
+                &times;
+            </button>
+            Done. Data Schema was created. 
+        </div>
+        <div id="alert_fail" class="alert alert-danger alert-dismissable hide">
+            <button type="button" class="close" data-dismiss="alert"
+                    aria-hidden="true">
+                &times;
+            </button>
+            错误！请进行一些更改。
+        </div>
+        {% include "DA/addDsc.html" %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="save">Create</button>
+        
+        <script>
+        jQuery(function ($) {
+        	function SaveChanges() {
+            	var temp = $("#grid");
+             	$("#grid").swidget().saveChanges();
+            	var grid =  $("#grid").swidget();
+            	var data = grid.dataSource.data;
+            	$.post('dsc/addDsc',"data="+JSON.stringify(data),"json")
+        };
+		        $("#save").click(function(){
+		            $(this).button('loading').delay(1000).queue(function() {
+		            SaveChanges();
+		            $(this).button('reset');
+		            $("#alert_succ").attr("class","alert alert-success alert-dismissable");
+		            $(this).dequeue(); 
+		            $('#dscModal').modal('hide');
+		            });
+		            
+		        });
+		    }); 
+        
+		</script>
+        
+      </div>
+    </div>
+    </form>
+  </div>
+</div>
+</div>
+
+
+<script>
+
+$(function () { $('.popover-show').popover();});
+
+
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+var csrftoken = getCookie('csrftoken');
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    }
+});
+
+</script>
+
+{% endblock %}

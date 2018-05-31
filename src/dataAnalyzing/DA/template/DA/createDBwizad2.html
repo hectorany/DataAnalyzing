@@ -1,0 +1,289 @@
+{% load staticfiles %}
+
+{% block create_DB %}
+ 
+<div class="wizard" id="satellite-wizard" data-title="Create database with uploading data file">
+
+			<!-- Step 1 Name & FQDN -->
+			<div class="wizard-card" data-cardname="dbname">
+				<h3>DB Name</h3>
+
+				<div class="wizard-input-section">
+					<div class="form-group">
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="dbname" name="dbname" placeholder="DataBase Name" data-validate="validateServerLabel">
+						</div>
+					</div>	
+				</div>	
+				<div class="wizard-input-section">
+					<div class="form-group">
+						<input type="checkbox" id="shown"/> Public to all
+					</div>
+				</div>
+			</div>
+
+
+			<div class="wizard-card wizard-card-overlay" data-cardname="schema">
+				<h3>Data Schema</h3>
+				<div class="wizard-input-section">
+					<p>
+						Please select data schema for this database
+					</p>
+
+					<select name="schema" data-placeholder="Schema Name" style="width:350px;" class="chzn-select form-control">
+						<option value=""></option>
+						{% for dsc in dsc_list %}
+						<option>{{ dsc.name }}</option>
+						{% endfor%}
+					</select>
+				</div>
+				<div class="alert hide">
+					Schema detail
+				</div>
+			</div>
+			<div class="wizard-card">
+				<h3>Upload Data File</h3>
+
+				
+				<div class="wizard-input-section">
+				<form id="upload" enctype="multipart/form-data"  method="post"> 
+					<div class="alert alert-warning">Just csv file supported.</div>
+					<input class="form-control" data-placeholder="Data file" type="file" id="datafile" data-validate="validatefile"/>
+			 		<button  type="button" class="btn btn-default hide" >upload</button>
+			 		
+				</form>
+				</div>
+
+				<div class="wizard-error">
+					<div class="alert alert-error">
+						<strong>There was a problem</strong> with your submission.
+						Please correct the errors and re-submit.
+					</div>
+				</div>
+	
+				<div class="wizard-failure">
+					<div class="alert alert-error">
+						<strong>There was a problem</strong> submitting the form.
+						Please try again in a minute.
+					</div>
+				</div>
+	
+				<div class="wizard-success">
+					<div class="alert alert-success">
+						<span class="create-server-name"></span>DB Created <strong>Successfully.</strong>
+					</div>
+	
+					<a class="btn btn-default create-another-server">Create another DB</a>
+					<span style="padding:0 10px">or</span>
+					<a class="btn btn-success im-done">Done</a>
+				</div>
+			</div>
+		</div>
+
+		<script src="{% static "js/jquery-2.0.3.min.js" %}" type="text/javascript"></script>
+		<script src="{% static "chosen/chosen.jquery.js" %}"></script>
+		<script src="{% static "js/bootstrap.min.wz.js" %}" type="text/javascript"></script>
+		<script src="{% static "js/prettify.js" %}" type="text/javascript"></script>
+		<script src="{% static "js/bootstrap-wizard.js" %}" type="text/javascript"></script>
+		<script type="text/javascript">
+		function FileUpload() {
+            var form_data = new FormData();
+            var file_info = $('#datafile')[0].files[0];
+            form_data.append('file',file_info);
+            //if(file_info==undefined)暂且不许要判断是否有附件
+                //alert('你没有选择任何文件');
+                //return false
+            //}
+
+            // 提交ajax的请求
+            $.ajax({
+                url:"/db/upload",
+                type:'POST',
+                data: form_data,
+                processData: false,  // tell jquery not to process the data
+                contentType: false, // tell jquery not to set contentType
+
+            }); // end ajax
+        };
+            
+			$(document).ready(function() {
+				$.fn.wizard.logging = true;
+				var wizard = $('#satellite-wizard').wizard({
+					submitUrl: 'db/upload/', 
+					keyboard : false,
+					contentHeight : 400,
+					contentWidth : 700,
+					backdrop: 'static'
+				});
+				
+				$(".chzn-select").chosen();
+
+				$('#fqdn').on('input', function() {
+					if ($(this).val().length != 0) {
+						$('#ip').val('').attr('disabled', 'disabled');
+						$('#fqdn, #ip').parents('.form-group').removeClass('has-error has-success');
+					} else {
+						$('#ip').val('').removeAttr('disabled');
+					}
+				});
+
+				var pattern = /\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b/;
+				x = 46;
+
+				$('#ip').on('input', function() {
+					if ($(this).val().length != 0) {
+						$('#fqdn').val('').attr('disabled', 'disabled');
+					} else {
+						$('#fqdn').val('').removeAttr('disabled');
+					}
+				}).keypress(function(e) {
+					if (e.which != 8 && e.which != 0 && e.which != x && (e.which < 48 || e.which > 57)) {
+						console.log(e.which);
+						return false;
+					}
+				}).keyup(function() {
+					var $this = $(this);
+					if (!pattern.test($this.val())) {
+						//$('#validate_ip').text('Not Valid IP');
+						console.log('Not Valid IP');
+						$this.parents('.form-group').removeClass('has-error has-success').addClass('has-error');
+						while ($this.val().indexOf("..") !== -1) {
+							$this.val($this.val().replace('..', '.'));
+						}
+						x = 46;
+					} else {
+						x = 0;
+						var lastChar = $this.val().substr($this.val().length - 1);
+						if (lastChar == '.') {
+							$this.val($this.val().slice(0, -1));
+						}
+						var ip = $this.val().split('.');
+						if (ip.length == 4) {
+							
+							console.log('Valid IP');
+							$this.parents('.form-group').removeClass('has-error').addClass('has-success');
+						}
+					}
+				});
+
+				wizard.on('closed', function() {
+					wizard.reset();
+				});
+
+				wizard.on("reset", function() {
+					wizard.modal.find(':input').val('').removeAttr('disabled');
+					wizard.modal.find('.form-group').removeClass('has-error').removeClass('has-succes');
+					wizard.modal.find('#fqdn').data('is-valid', 0).data('lookup', 0);
+				});
+
+				
+				wizard.on("submit",  
+					
+				function(wizard) {
+					FileUpload();
+					validatefile($("#datafile"));
+					var da= this.serialize();
+					var submit = {
+						"datafile": $("#datafile").val(),
+						"shown":$("#shown").val(),
+						"post":da
+					};
+					this.log('seralize()');
+					this.log(this.serialize());
+					this.log('serializeArray()');
+					this.log(this.serializeArray());
+					$.post('db/upload',submit,"json");
+			
+					setTimeout(function() {
+						wizard.trigger("success");
+						wizard.hideButtons();
+						wizard._submitting = false;
+						wizard.showSubmitCard("success");
+						wizard.updateProgressBar(0);
+					}, 2000);
+				});
+				
+				wizard.el.find(".wizard-success .im-done").click(function() {
+					wizard.hide();
+					setTimeout(function() {
+						wizard.reset();	
+					}, 250);
+					
+				});
+			
+				wizard.el.find(".wizard-success .create-another-server").click(function() {
+					wizard.reset();
+				});
+			
+				$(".wizard-group-list").click(function() {
+					alert("Disabled for demo.");
+				});
+
+				$('#open-wizard').click(function(e) {
+					e.preventDefault();
+					wizard.show();
+				});
+			});
+
+			function validateServerLabel(el) {
+				var name = el.val();
+				var retValue = {};
+
+				if (name == "") {
+					retValue.status = false;
+					retValue.msg = "Please enter db name";
+				} else {
+					retValue.status = true;
+				}
+
+				return retValue;
+			};
+			function validatefile(el) {
+				var file = el.val();
+				var retValue = {};
+
+				if (file == "") {
+					retValue.status = false;
+					retValue.msg = "Please select your data file";
+					alert(retValue.msg);
+				} else {
+					retValue.status = true;
+				}
+
+				return retValue;
+			};
+			
+			
+
+			function getCookie(name) {
+			    var cookieValue = null;
+			    if (document.cookie && document.cookie != '') {
+			        var cookies = document.cookie.split(';');
+			        for (var i = 0; i < cookies.length; i++) {
+			            var cookie = jQuery.trim(cookies[i]);
+			            // Does this cookie string begin with the name we want?
+			            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+			                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+			                break;
+			            }
+			        }
+			    }
+			    return cookieValue;
+			}
+			var csrftoken = getCookie('csrftoken');
+			function csrfSafeMethod(method) {
+			    // these HTTP methods do not require CSRF protection
+			    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+			}
+			$.ajaxSetup({
+			    beforeSend: function(xhr, settings) {
+			        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+			            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+			        }
+			    }
+			});
+
+	
+		</script>
+
+{% endblock %}

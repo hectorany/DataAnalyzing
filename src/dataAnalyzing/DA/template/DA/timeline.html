@@ -1,0 +1,99 @@
+{% extends "DA/base.html" %}
+{% load staticfiles %}
+{% block main_fram %}
+{% block beadcrumb %}
+<div class="row">
+		<div class="col-md-12">
+			<ul class="breadcrumb">
+				<li>
+					<a href="/index.html">Home</a> <span class="divider">/</span>
+				</li>
+				<li>
+					<a href="/db">DataBase</a> <span class="divider">/</span>
+				</li>
+				<li>
+					Operations
+				</li>
+			</ul>
+		</div>
+	</div>
+{% endblock %}
+<link rel="stylesheet" href="{% static "css/bootstrap-select.css" %}">
+<script src="{% static "js/bootstrap-select.js" %}"></script>
+
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span12">
+		<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion" 
+				   			href="#collapseOne">
+						Create your conditions
+						</a>
+					</h3>
+				</div>
+				
+				<div class="panel-body">
+					<p>Data Time column</p>
+					<select id="timed" class="selectpicker" title="Choose one of time column...">
+					{% for item in items %}
+					  <option>{{ item }}</option>
+					{% endfor %}
+					</select>
+					<div id="collapseOne" class="panel-collapse collapse">
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>
+									Column
+								</th>
+								<th>
+									Condition
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+						{% for item in items %}
+							<tr>
+								<td>
+									{{ item }}
+								</td>
+								<td>
+									<input id="{{ item }}_con" type="text" class="form-control">
+								</td>
+								
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+				</div>
+				<div class="panel-footer">
+				<button id="showme" class="btn btn-primary"  > <!--  data-toggle="modal" data-target="#myModal"> -->
+					Time Line
+					
+				</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+	
+		$('#showme').on('click', function () {
+			  // 执行一些动作...
+		var myurl = "timeShow?dbname={{ dbname }}&schema={{ schema }}&";
+			myurl = myurl +"timed=" + document.getElementById('timed').value +"&"
+		{% for item in items %}
+			if(document.getElementById('{{ item }}_con').value)
+				myurl = myurl+"{{ item }}_con="+document.getElementById('{{ item }}_con').value+"&";
+		{% endfor %}
+			console.log(myurl);
+			window.location=myurl
+		});
+	</script>
+			
+	</div>
+</div>
+
+{% endblock %}

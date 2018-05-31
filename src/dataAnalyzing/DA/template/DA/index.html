@@ -1,0 +1,108 @@
+{% extends "DA/base.html" %}
+
+{% block main_fram %}
+<div class="container-fluid">
+	
+	<div class="row">
+		<div class="col-md-12">
+			<ul class="nav nav-tabs" id="myTab">
+				<li class="active">
+					<a href="#home" data-toggle="tab">Home</a>
+				</li>
+				<li>
+					<a href="#dsc" >Data Schema Customization</a>
+				</li>
+				<li >
+					<a href="#db" data-toggle="tab">Data Base</a>
+				</li>
+				<li class="dropdown pull-right">
+					 <a href="#" data-toggle="dropdown" class="dropdown-toggle">Dropdown<strong class="caret"></strong></a>
+					<ul class="dropdown-menu">
+						<li>
+							<a href="#">Contact Me</a>
+						</li>
+						<li class="divider">
+						</li>
+						
+					</ul>
+				</li>
+			</ul>
+		<div id="myTabContent" class="tab-content">
+			<div class="tab-pane fade in active" id="home">
+			  <div class="row">
+				<div class="col-md-12">
+				<div class=" jumbotron">
+					<h2>
+						Hello, welcome to the Bugzilla Data Analysis!
+					</h2>
+					<p>
+						
+					</p>
+					<p>
+						<a class="btn btn-primary btn-large" href="#">Learn more</a>
+					</p>
+				</div>
+				</div>
+			  </div>
+			  			<div class="row">
+				<div class="col-md-4">
+					<h2>
+						Data Schema
+					</h2>
+					<p>
+						You can create data schema, based on which this system will build data base, and store your 
+						data according your schema. 
+					</p>
+					<p>
+						<a class="btn" href="#">View details »</a>
+					</p>
+				</div>
+				<div class="col-md-4">
+					<h2>
+						Data Base
+					</h2>
+					<p>
+						You can upload csv or exel files to system and we stored them to data base.
+						The data base is used for data analysis.
+					</p>
+					<p>
+						<a class="btn" href="#">View details »</a>
+					</p>
+				</div>
+				<div class="col-md-4">
+					<h2>
+						Data files
+					</h2>
+					<p>
+						Data files are your data uploaded before. You can upload new data files to the system or remove
+						your private data files after uploading.
+						
+					</p>
+					<p>
+						<a class="btn" href="#">View details »</a>
+					</p>
+				</div>
+			</div>
+			</div>
+		<div class="tab-pane fade" id="dsc">
+			{% include "DA/dsc.html"%}
+		</div>
+		<div class="tab-pane fade" id="db">
+			{% include "DA/db.html"%}
+		</div>
+	</div>
+<script>
+	$(function () {
+		$('#myTab li:eq(0) a').tab('show');
+		$('#myTab a').click(function (e) { 
+          e.preventDefault();
+          $(this).tab('show');
+          })
+	});
+	</script>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
