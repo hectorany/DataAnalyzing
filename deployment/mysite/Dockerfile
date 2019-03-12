@@ -13,5 +13,6 @@ RUN python -c "import nltk;nltk.set_proxy('http://135.251.33.16:80');nltk.downlo
 
 RUN mv /usr/lib/python2.7/site-packages/nltk/text.py /usr/lib/python2.7/site-packages/nltk/text.py.bak && cat /usr/lib/python2.7/site-packages/nltk/text.py.bak | sed -e 's/print(tokenwrap(colloc_strings, separator="; "))/return tokenwrap(colloc_strings, separator="; ")/g' > /usr/lib/python2.7/site-packages/nltk/text.py
 
-CMD bash -c 'uwsgi --ini /var/www/mysite/uwsgi.ini; bash'
+EXPOSE 8001
+CMD bash -c 'uwsgi --ini /var/www/mysite/uwsgi.ini'
 
