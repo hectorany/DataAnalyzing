@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 
-set -x
+set +x
 
 if [ $# -gt 0 ]
 then
